@@ -11,27 +11,75 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
 function CalcularPrecio () 
 {
      var precio = 35;
-     var cantidad = 0;
+     var cantidad = parseInt(document.getElementById("Cantidad").value);
+     var descuento = 0;
+     var bruto= precio * cantidad;
+     var impuestos = 0
+     var marca = document.getElementById('Marca').value;
+    
+while (isNaN(document.getElementById("Cantidad").value)){
 
-
-
-cantidad = parseInt(document.getElementById("Cantidad").value);
-
+    document.getElementById("Cantidad").value =  parseInt( prompt (("por favor complete todos los campos para poder calcular su descuento")));
+}
 
 switch (marca) {
     case ("ArgentinaLuz"):
 
+    if (cantidad = 5) {
+    descuento = (bruto *40) / 100; 
+}
+    if (cantidad = 4) {
+        descuento = (bruto *25) / 100;
+    }
+    if (cantidad = 3) {
+        descuento = (bruto *15) / 100; 
+    }
+break;
+
     case ("FelipeLamparas"):
 
-    case ("JeLuz"):
-
-    case ("Osram"):
-//aca
+        if (cantidad = 4) {
+            descuento = (bruto *25) / 100;
+        }
+if (cantidad = 3) {
+    descuento = ( bruto *10) / 100; 
+}  
     break;
-}
-while (cantidad = 5){
+
+    default: 
+
+    if (cantidad>=6)
+
+    {
+    descuento = bruto / 2; 
+
+    }
+    
+    if (cantidad = 5) {
+    descuento = (bruto *30) / 100; 
 
 }
+
+if (cantidad = 4) {
+
+    descuento = (bruto *20) / 100; 
+
 }
+if (cantidad = 3) {
+    descuento = (bruto *05) / 100; 
+}   
+
+}
+
+if (bruto - descuento > 120) {
+impuestos = ((bruto - descuento) * 10) / 100;
+
+alert ("IIBB Usted pago $ "  + (bruto - descuento) + " siendo $ " + impuestos + " el impuesto que se pagó");
+
+    document.getElementById("precioDescuento").value= (bruto - descuento) + impuestos;
+}
+else;
+
+document.getElementById("precioDescuento").value = parseFloat(cantidad * precio - descuento); 
 
 }
