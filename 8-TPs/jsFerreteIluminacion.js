@@ -12,74 +12,83 @@ function CalcularPrecio ()
 {
      var precio = 35;
      var cantidad = parseInt(document.getElementById("Cantidad").value);
-     var descuento = 0;
+     var descuento = 0
+     var descuentoTotal = 0;
      var bruto= precio * cantidad;
      var impuestos = 0
      var marca = document.getElementById('Marca').value;
-    
-while (isNaN(document.getElementById("Cantidad").value)){
+    var totalPago = bruto - descuentoTotal;
 
-    document.getElementById("Cantidad").value =  parseInt( prompt (("por favor complete todos los campos para poder calcular su descuento")));
+if (cantidad >= 1){
+
+// Se usa Cantidad por ser la que permite ingresar menos codigo.
+switch (cantidad) {
+   case 1:
+   case 2: {
+    descuento = 0
 }
+   
+   
+    case 5:
 
-switch (marca) {
-    case ("ArgentinaLuz"):
-
-    if (cantidad = 5) {
-    descuento = (bruto *40) / 100; 
+    if (marca == "ArgentinaLuz") {
+    descuento = 40; 
 }
-    if (cantidad = 4) {
-        descuento = (bruto *25) / 100;
-    }
-    if (cantidad = 3) {
-        descuento = (bruto *15) / 100; 
+    else  {
+     descuento = 30;
     }
 break;
 
-    case ("FelipeLamparas"):
+    case 4 :
 
-        if (cantidad = 4) {
-            descuento = (bruto *25) / 100;
+        if (marca == "ArgentinaLuz" || marca == "FelipeLamparas") {
+            descuento = 25;
         }
-if (cantidad = 3) {
-    descuento = ( bruto *10) / 100; 
+else {
+    descuento = 20; 
 }  
     break;
+case 3 :
 
-    default: 
+if (marca == "ArgentinaLuz") {
+descuento = 15;
+}
+else if (marca == "FelipeLamparas") {
+    descuento = 10;
+}
+else {
+    descuento = 5;
+}
+    
+default: 
 
     if (cantidad>=6)
 
     {
-    descuento = bruto / 2; 
+    descuento = 50;
 
     }
     
-    if (cantidad = 5) {
-    descuento = (bruto *30) / 100; 
+ }
 
+ descuento = (descuento * precio) / 100;
+descuentoTotal = descuento * cantidad;
+
+if (bruto - descuentoTotal  > 120) {
+
+impuestos = (totalPago * 10) / 100;
+
+alert ("IIBB Usted pago $ "  + (totalPago) + " siendo $ " + impuestos + " el impuesto que se pagó");
+
+    document.getElementById("precioDescuento").value= descuentoTotal + impuestos;
 }
 
-if (cantidad = 4) {
-
-    descuento = (bruto *20) / 100; 
-
-}
-if (cantidad = 3) {
-    descuento = (bruto *05) / 100; 
-}   
-
-}
-
-if (bruto - descuento > 120) {
-impuestos = ((bruto - descuento) * 10) / 100;
-
-alert ("IIBB Usted pago $ "  + (bruto - descuento) + " siendo $ " + impuestos + " el impuesto que se pagó");
-
-    document.getElementById("precioDescuento").value= (bruto - descuento) + impuestos;
-}
 else;
 
-document.getElementById("precioDescuento").value = parseFloat(cantidad * precio - descuento); 
+document.getElementById("precioDescuento").value = descuentoTotal; 
+}
+else{;
 
+alert ("Esa no es una cantidad valida");
+}
 }
